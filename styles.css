@@ -14,8 +14,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden;
     /* no scrollbar */
+    overflow: hidden;
 
 
     /* body */
@@ -126,7 +126,7 @@ body.dark {
 
 /* light mode */
 .moon {
-    top: 5%;
+    bottom: 5%;
     opacity: 0;
 
     /* correct the moon icon upsidedown */
