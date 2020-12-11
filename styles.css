@@ -1,0 +1,139 @@
+/* swap between theme using css variables */
+/* put the browser/live server on side to able see what to change */
+body {
+    /* css variable */
+    --accent-color: orangered;
+    --background-color: white;
+    --text-color: black;
+    --button-text-color: var(--background-color);
+    --transition-delay: 1s;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    /* no scrollbar */
+
+
+    /* body */
+    transition: var(--transition-delay);
+    /* delaying the transition,using css variable above */
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+}
+
+/* overwrite with dark mode */
+body.dark {
+    --accent-color: #d0d066;
+    --background-color: #333;
+    --text-color: white;
+
+}
+
+/* title is class name */
+.title {
+    margin: 0;
+    margin-bottom: .5rem;
+}
+
+/* button */
+.theme-toggle-button {
+    background-color: var(--accent-color);
+    color: var(--button-text-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* when hover */
+    cursor: pointer;
+
+    padding: .5em 1em;
+    border-radius: .3em;
+    border: none;
+    outline: none;
+    transition: var(--transition-delay);
+    transform: scale(1);
+}
+
+/* icon */
+.theme-toggle-button .icon {
+    margin-right: .5em;
+}
+
+
+.theme-toggle-button:hover,
+.theme-toggle-button:focus {
+    transform: scale(1.1);
+}
+
+.sun-moon-container {
+    --rotation: 0;
+    position: absolute;
+    
+    /* not efect with event */
+    pointer-events: none;
+
+    /* center */
+    display: flex;
+    /* center */
+    justify-content: center;
+    /* center */
+    align-items: center;
+
+    top: 0;
+    height: 200vmin;
+    /* rotation of sun and moon, change into degree here to use string parse inside javascript */
+    transform: rotate(calc(var(--rotation) *1deg));
+    transition: transform var(--transition-delay);
+}
+
+/* handling rotation 
+.dark .sun-moon-container {
+    // --rotation: 180deg; 
+    --rotation: 180;
+} */
+
+
+/* joint selector */
+.sun,
+.moon {
+    position: absolute;
+
+    /* only transition opacity, fill make transition more fluid */
+    transition: opacity, fill, var(--transition-delay);
+
+    /* larger on screen */
+    width: 30px;
+    height: 30px;
+
+    fill: var(--accent-color);
+}
+
+/* light mode */
+.sun {
+    top: 5%;
+    opacity: 1;
+}
+
+/* dark mode */
+.dark .sun {
+    opacity: 0;
+}
+
+/* light mode */
+.moon {
+    top: 5%;
+    opacity: 0;
+
+    /* correct the moon icon upsidedown */
+    transform: rotate(180deg);
+}
+
+/* dark mode */
+.dark .moon {
+    opacity: 1;
+}
